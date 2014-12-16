@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scrum</title>
+  <title>Gladiators Game</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width" />
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<header class="container">
+    <nav class="ui secondary pointing menu">
+        <% if current_page?(root_path) %>
+            <%= link_to(raw('<i class="home icon"></i> Home'), root_path(), :class => 'ui active item') %>
+        <% else %>
+            <%= link_to(raw('<i class="home icon"></i> Home'), root_path(), :class => 'ui item') %>
+        <% end %>
+        <a class="item">
+            <i class="mail icon"></i> Messages
+        </a>
+        <div class="right menu">
+            <% if user_signed_in? %>
+                <%= link_to(raw('<i class="user icon"></i> Déconnexion'), destroy_user_session_path, :class => 'ui item', :method => :delete) %>
+            <% else %>
+              <% if current_page?(user_session_path) %>
+                  <%= link_to(raw('<i class="user icon"></i> Connexion'), user_session_path, :class => 'ui active item')  %>
+              <% else %>
+                  <%= link_to(raw('<i class="user icon"></i> Connexion'), user_session_path, :class => 'ui item')  %>
+              <% end %>
+            <% end %>
+        </div>
+    </nav>
+    <% if notice %>
+      <div class="ui negative message">
+        <p>
+          <%= notice %>
+        </p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="ui negative message">
+        <p>
+          <%= alert %>
+        </p>
+      </div>
+    <% end %>
+</header>
+
+<main class="container">
+    <%= yield %>
+</main>
+
+<footer class="container">
+</footer>
 
 </body>
 </html>
