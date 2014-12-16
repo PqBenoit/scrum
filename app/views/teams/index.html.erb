@@ -1,0 +1,10 @@
+<h1>Team list</h1>
+<% if @teams.count > 0 %>
+	<ul>
+		<% @teams.each do |team| %>
+			<li>
+				<%= link_to( team.name, team_path(team)) %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
