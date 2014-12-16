@@ -1,4 +1,5 @@
 class GladiatorsController < ApplicationController
+	before_action :authenticate_user!
 	def index 
 		@gladiators = Gladiator.all
 	end
