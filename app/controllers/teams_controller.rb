@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
 	def show
 		@team = Team.find(params[:id])
 		@gladiators = Gladiator.where(team_id: @team.id)
+		@equipments = Equipment.all
 	end
 
 	def new
