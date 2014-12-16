@@ -1,5 +1,17 @@
 <h1><%= @team.name %></h1>
 <p><%= @team.description %></p>
 
+<h2>Gladiators</h2>
+<% if @gladiators.count > 0 %>
+	<ul>
+		<% @gladiators.each do |gladiator| %>
+			<li>
+				<%= gladiator.name %>
+			</li>
+		<% end %>		
+	</ul>
+<% end %>
+
+<%= link_to("create gladiator", new_gladiator_path) %>
 <%= link_to("edit", [:edit, @team]) %>
 <%= link_to("delete", @team, :method => :delete) %>

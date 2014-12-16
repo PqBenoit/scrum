@@ -12,13 +12,27 @@
 <header class="container">
     <nav class="ui secondary pointing menu">
         <% if current_page?(root_path) %>
-            <%= link_to(raw('<i class="home icon"></i> Home'), root_path(), :class => 'ui active item') %>
+            <%= link_to(raw('<i class="home icon"></i> Accueil'), root_path(), :class => 'ui active item') %>
         <% else %>
-            <%= link_to(raw('<i class="home icon"></i> Home'), root_path(), :class => 'ui item') %>
+            <%= link_to(raw('<i class="home icon"></i> Accueil'), root_path(), :class => 'ui item') %>
         <% end %>
-        <a class="item">
-            <i class="mail icon"></i> Messages
-        </a>
+        <% if user_signed_in? %>
+          <% if current_page?(user_path(id: current_user.id)) %>
+              <%= link_to(raw('<i class="male icon"></i>')+current_user.name, user_path(id: current_user.id), :class => 'ui active item') %>
+          <% else %>
+              <%= link_to(raw('<i class="male icon"></i>')+current_user.name, user_path(id: current_user.id), :class => 'ui item') %>
+          <% end %>
+          <% if current_page?(new_team_path) %>
+              <%= link_to(raw('<i class="users icon"></i> Créer une équipe'), new_team_path, :class => 'ui active item') %>
+          <% else %>
+              <%= link_to(raw('<i class="users icon"></i> Créer une équipe'), new_team_path, :class => 'ui item') %>
+          <% end %>
+          <% if current_page?(new_gladiator_path) %>
+            <%= link_to(raw('<i class="child icon"></i> Ajouter un gladiateur'), new_gladiator_path, :class => 'ui active item') %>
+          <% else %>
+              <%= link_to(raw('<i class="child icon"></i> Ajouter un gladiateur'), new_gladiator_path, :class => 'ui item') %>
+          <% end %>
+        <% end %>
         <div class="right menu">
             <% if user_signed_in? %>
                 <%= link_to(raw('<i class="user icon"></i> Déconnexion'), destroy_user_session_path, :class => 'ui item', :method => :delete) %>
