@@ -1,7 +1,8 @@
-<h1><%= @team.name %></h1>
+<h1>Equipe: <%= @team.name %></h1>
+<h2>Description:</h2>
 <p><%= @team.description %></p>
 
-<h2>Gladiators</h2>
+<h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
 	<ul>
 		<% @gladiators.each do |gladiator| %>
@@ -11,7 +12,21 @@
 		<% end %>		
 	</ul>
 <% end %>
-
 <%= link_to("create gladiator", new_gladiator_path) %>
+
+<h2>Equipements</h2>
+<p>Glisser un équipement sur un gladiateur pour l'équiper</p>
+<% if @equipments.count > 0 %>
+		<% @equipments.each do |equipment| %>
+			<div.single-equipment>
+				<h3><%= equipment.name %></h3>
+				<p>Priorité: <%= equipment.priority %></p>
+				<p>Dommages: <%= equipment.damage %></p>
+				<p>Défense: <%= equipment.defense %></p>
+			</div>
+		<% end %>
+	</ul>
+<% end %>
+
 <%= link_to("edit", [:edit, @team]) %>
 <%= link_to("delete", @team, :method => :delete) %>

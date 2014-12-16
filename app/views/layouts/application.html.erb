@@ -23,9 +23,9 @@
               <%= link_to(raw('<i class="male icon"></i>')+current_user.name, user_path(id: current_user.id), :class => 'ui item') %>
           <% end %>
           <% if current_page?(new_team_path) %>
-              <%= link_to(raw('<i class="users icon"></i> Créer une équipe'), new_team_path, :class => 'ui active item') %>
+              <%= link_to(raw('<i class="users icon"></i> Ajouter une équipe'), new_team_path, :class => 'ui active item') %>
           <% else %>
-              <%= link_to(raw('<i class="users icon"></i> Créer une équipe'), new_team_path, :class => 'ui item') %>
+              <%= link_to(raw('<i class="users icon"></i> Ajouter une équipe'), new_team_path, :class => 'ui item') %>
           <% end %>
           <% if current_page?(new_gladiator_path) %>
             <%= link_to(raw('<i class="child icon"></i> Ajouter un gladiateur'), new_gladiator_path, :class => 'ui active item') %>
