@@ -1,10 +1,11 @@
 class TeamsController < ApplicationController
 	def index
-		@teams = Team.all
+		@teams = Team.where(user_id: current_user.id)
 	end
 
 	def show
 		@team = Team.find(params[:id])
+		@gladiators = Gladiator.where(team_id: @team.id)
 	end
 
 	def new
@@ -12,7 +13,9 @@ class TeamsController < ApplicationController
 
 	def create
 		@team = Team.new(team_params)
+		@team.user_id = current_user.id
 		@team.save
+
 		redirect_to @team
 	end
 
@@ -41,5 +44,5 @@ class TeamsController < ApplicationController
 		def team_params
 			params.require(:team).permit(:name, :description)
 		end
-	
+
 end

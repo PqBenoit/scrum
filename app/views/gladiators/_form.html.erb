@@ -1,7 +1,12 @@
-<%= form_for :gladiator, url: team_gladiators_path do |f| %>
+<%= form_for :gladiator, url: gladiators_path do |f| %>
 	<p>
 		<%= f.label :name %>
 		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :team %>
+		<%= f.collection_select(:team_id, Team.where( user_id: current_user.id ), :id, :name, { :prompt => true }) %>
 	</p>
 
 	<%= f.submit %>
