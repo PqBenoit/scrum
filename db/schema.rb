@@ -16,6 +16,32 @@ ActiveRecord::Schema.define(version: 20141216092036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "equipment", force: true do |t|
+    t.string   "name"
+    t.integer  "damage"
+    t.integer  "priority"
+    t.integer  "defense"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gladiators", force: true do |t|
+    t.string   "name"
+    t.integer  "victories"
+    t.integer  "fights"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "victories"
+    t.integer  "fights"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

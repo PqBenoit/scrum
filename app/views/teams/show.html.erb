@@ -1,0 +1,5 @@
+<h1><%= @team.name %></h1>
+<p><%= @team.description %></p>
+
+<%= link_to("edit", [:edit, @team]) %>
+<%= link_to("delete", @team, :method => :delete) %>

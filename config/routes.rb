@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   # RESSOURCES
   devise_for :users
+  resources :teams
 end
