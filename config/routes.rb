@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   devise_for :users
   resources :teams
   resources :gladiators
+  root 'pages#index'
 end
