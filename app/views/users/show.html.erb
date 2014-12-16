@@ -1,0 +1,18 @@
+<% if @teams.count > 0 %>
+    <h2>Vos équipes</h2>
+    <% @teams.each do |t| %>
+        <h3>
+          <%= t.name %>
+        </h3>
+        <% if t.gladiators.count > 0 %>
+            <h3> Gladiateurs de l'équipe : <%= t.name %></h3>
+            <% t.gladiators.each do |g| %>
+                <p>
+                    <%= g.name %>
+                </p>
+            <% end %>
+        <% end %>
+    <% end %>
+<% else %>
+    <h2>Vous n'avez pas encore d'équipe</h2>
+<% end %>
