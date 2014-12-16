@@ -10,13 +10,17 @@ class GladiatorsController < ApplicationController
 	def create
 		@gladiator = Gladiator.new(gladiator_params)
 		@gladiator.save
+
+		@team = Team.find_by_id(@gladiator.team_id)
+
+		redirect_to @team
 	end
 
-	def new	
+	def new
 	end
 
 	private
 		def gladiator_params
-			params.require(:gladiator).permit(:name)
+			params.require(:gladiator).permit(:name, :team_id)
 		end
 end
