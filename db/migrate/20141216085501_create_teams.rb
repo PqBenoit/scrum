@@ -5,7 +5,7 @@ class CreateTeams < ActiveRecord::Migration
       t.text :description
       t.integer :victories
       t.integer :fights
-
+      
       t.timestamps
     end
   end

@@ -1,0 +1,11 @@
+<h1>Gladiators</h1>
+
+<% if @gladiators.count > 0 %>
+	<ul>
+		<% @gladiators.each do |gladiator| %>
+			<li>
+				<%= gladiator.name %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
