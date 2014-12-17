@@ -2,9 +2,7 @@
 <p><%= @team.description %></p>
 
 <h2>Gladiateurs</h2>
-<br>
 <% if @gladiators.count > 0 %>
-	<div class="ui grid">
 		<% @gladiators.each do |gladiator| %>
 			<div class="droppable sixteen wide column ui message">
 				<p class="header"><%= gladiator.name %></p>
@@ -13,10 +11,8 @@
 				</ul>
 			</div>
 		<% end %>
-	</div>
 	<div class="reset-float"></div>		
 <% end %>
-<br><br>
 <%= link_to("Créer un gladiateur", new_gladiator_path, class: 'positive ui button') %>
 <h2>Equipements</h2>
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
