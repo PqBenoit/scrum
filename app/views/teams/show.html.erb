@@ -4,13 +4,15 @@
 
 <h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
-	<ul>
-		<% @gladiators.each do |gladiator| %>
-			<li>
-				<%= gladiator.name %>
-			</li>
-		<% end %>		
-	</ul>
+	<% @gladiators.each do |gladiator| %>
+		<div class="droppable">
+			<p><%= gladiator.name %></p>
+			<ul class='gladiator-equipments'>
+				
+			</ul>
+		</div>
+	<% end %>
+	<div class="reset-float"></div>		
 <% end %>
 <%= link_to("create gladiator", new_gladiator_path) %>
 
@@ -18,14 +20,15 @@
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
 <% if @equipments.count > 0 %>
 		<% @equipments.each do |equipment| %>
-			<div.single-equipment>
+			<div class="single-equipment draggable">
 				<h3><%= equipment.name %></h3>
-				<p>Priorité: <%= equipment.priority %></p>
+				<!-- <p>Priorité: <%= equipment.priority %></p>
 				<p>Dommages: <%= equipment.damage %></p>
-				<p>Défense: <%= equipment.defense %></p>
+				<p>Défense: <%= equipment.defense %></p> -->
 			</div>
 		<% end %>
 	</ul>
+	<div class="reset-float"></div>
 <% end %>
 
 <%= link_to("edit", [:edit, @team]) %>
