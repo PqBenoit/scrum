@@ -31,6 +31,7 @@
         <% end %>
         <div class="right menu">
             <% if user_signed_in? %>
+                <%= link_to(raw('<i class="user icon"></i> Mon compte'), edit_user_registration_path ,:class => 'ui item') %>
                 <%= link_to(raw('<i class="sign out icon"></i> Déconnexion'), destroy_user_session_path, :class => 'ui item', :method => :delete) %>
             <% else %>
               <% if current_page?(user_session_path) %>
