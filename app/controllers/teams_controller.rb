@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 	def index
 		if current_user != nil
 	        @teams = Team.where(user_id: current_user.id)
-	        @gladiators = Gladiator.where(team_id: '')
+	        @gladiators = Gladiator.where(team_id: nil, user_id: current_user.id)
 	    end
 	end
 
