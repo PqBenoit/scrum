@@ -44,7 +44,6 @@ $ ->
 	$('.droppable-index').droppable
 		drop: (event, ui) ->
 			team_id = $(this).attr('data-team-id')
-			alert team_id
 			$.ajax(
 				type: "POST"
 				url: $(this).attr('data-url')
