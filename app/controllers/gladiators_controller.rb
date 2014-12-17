@@ -23,6 +23,6 @@ class GladiatorsController < ApplicationController
 
 	private
 		def gladiator_params
-			params.require(:gladiator).permit(:name, :team_id, :user_id)
+			params.require(:gladiator).permit(:name, :team_id, :user_id, :equipment_id)
 		end
 end

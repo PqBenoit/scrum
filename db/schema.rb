@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141217125029) do
+=======
+ActiveRecord::Schema.define(version: 20141217133134) do
+>>>>>>> cbe3ba138c8c3eebf51b283932b761db96bfa0e1
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +29,16 @@ ActiveRecord::Schema.define(version: 20141217125029) do
     t.datetime "updated_at"
   end
 
+  create_table "gladiator_equipments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "gladiator_id"
+    t.integer  "equipment_id"
+  end
+
+  add_index "gladiator_equipments", ["equipment_id"], name: "index_gladiator_equipments_on_equipment_id", using: :btree
+  add_index "gladiator_equipments", ["gladiator_id"], name: "index_gladiator_equipments_on_gladiator_id", using: :btree
+
   create_table "gladiators", force: true do |t|
     t.string   "name"
     t.integer  "victories"
@@ -33,8 +47,12 @@ ActiveRecord::Schema.define(version: 20141217125029) do
     t.datetime "updated_at"
     t.integer  "team_id"
     t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.integer  "gladiator_equipment_id"
   end
 
+  add_index "gladiators", ["equipment_id"], name: "index_gladiators_on_equipment_id", using: :btree
+  add_index "gladiators", ["gladiator_equipment_id"], name: "index_gladiators_on_gladiator_equipment_id", using: :btree
   add_index "gladiators", ["team_id"], name: "index_gladiators_on_team_id", using: :btree
   add_index "gladiators", ["user_id"], name: "index_gladiators_on_user_id", using: :btree
 

@@ -4,22 +4,30 @@
 <h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
 	<% @gladiators.each do |gladiator| %>
-		<div class="droppable">
+		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
 			<p><%= gladiator.name %></p>
+			<% if gladiator.equipment_id %>
+				<p><%= gladiator.equipment_id %></p>
+			<% end %>
 			<ul class='gladiator-equipments'>
-				
+				<% if gladiator.equipments.count > 0 %>
+					<% gladiator.equipments.each do |ge| %>
+						<li><%= ge.name %></li>
+					<% end %>
+				<% end %>
 			</ul>
 		</div>
 	<% end %>
 	<div class="reset-float"></div>		
 <% end %>
-
+<%= link_to("Créer un gladiateur", new_gladiator_path, class: 'positive ui button') %>
 <h2>Equipements</h2>
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
 <% if @equipments.count > 0 %>
 		<% @equipments.each do |equipment| %>
-			<div class="single-equipment draggable">
+			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>">
 				<h3><%= equipment.name %></h3>
+				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
 				<!-- <p>Priorité: <%= equipment.priority %></p>
 				<p>Dommages: <%= equipment.damage %></p>
 				<p>Défense: <%= equipment.defense %></p> -->

@@ -46,6 +46,21 @@ class TeamsController < ApplicationController
 		render 'index'
 	end
 
+	def set_equipment
+		@gladiator_equipment = GladiatorEquipment.new()
+		@equipment = Equipment.find(params[:id_equipement])
+		@gladiator = Gladiator.find(params[:id_gladiateur])
+
+		@gladiator_equipment.equipment_id = @equipment.id
+		@gladiator_equipment.gladiator_id = @gladiator.id
+
+		@gladiator_equipment.save
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
+	end
+
 	private
 		def team_params
 			params.require(:team).permit(:name, :description)

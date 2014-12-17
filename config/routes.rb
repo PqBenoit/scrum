@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'teams#index'
+  post 'teams/set_equipment', to: 'teams#set_equipment', as: 'set_equipment'
 
   # RESSOURCES
   devise_for :users
