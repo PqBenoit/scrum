@@ -4,7 +4,7 @@
 <h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
 	<% @gladiators.each do |gladiator| %>
-		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
+		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
 			<p><i class="child icon"></i><%= gladiator.name %></p>
 			<% if gladiator.equipment_id %>
 				<p><%= gladiator.equipment_id %></p>
