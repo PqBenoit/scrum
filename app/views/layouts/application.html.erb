@@ -17,6 +17,8 @@
         <% else %>
             <%= link_to(raw('<i class="home icon"></i> Accueil'), root_path, :class => 'ui item') %>
         <% end %>
+
+
         <% if user_signed_in? %>
           <% if current_page?(new_team_path) %>
               <%= link_to(raw('<i class="users icon"></i> Ajouter une équipe'), new_team_path, :class => 'ui active item') %>
@@ -30,7 +32,14 @@
           <% end %>
         <% end %>
         <div class="right menu">
-            <% if user_signed_in? %>
+          <div class="item">
+            <div class="ui icon input">
+              <input placeholder="Inviter un amis à jouer..." type="text">
+              <%= link_to(raw('<i class="mail icon"></i>')) %>
+            </div>
+          </div>
+
+          <% if user_signed_in? %>
               <% if current_page?(edit_user_registration_path) %>
                 <%= link_to(raw('<i class="user icon"></i> Mon compte'), edit_user_registration_path ,:class => 'active ui item') %>
               <% else %>
