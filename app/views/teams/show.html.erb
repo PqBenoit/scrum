@@ -1,5 +1,4 @@
-<h1>Equipe: <%= @team.name %></h1>
-<h2>Description:</h2>
+<h1><%= @team.name %></h1>
 <p><%= @team.description %></p>
 
 <h2>Gladiateurs</h2>
@@ -12,7 +11,8 @@
 		<% end %>		
 	</ul>
 <% end %>
-<%= link_to("create gladiator", new_gladiator_path) %>
+
+<%= link_to("Créer un gladiateur", new_gladiator_path, class: 'positive ui button') %>
 
 <h2>Equipements</h2>
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
@@ -28,5 +28,6 @@
 	</ul>
 <% end %>
 
-<%= link_to("edit", [:edit, @team]) %>
-<%= link_to("delete", @team, :method => :delete) %>
+<h2>Options</h2>
+<%= link_to("Modifier l'équipe", [:edit, @team], class: 'primary ui button') %>
+<%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'negative ui button') %>
