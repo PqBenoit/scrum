@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
   # RESSOURCES
   devise_for :users
-  resources :teams
+  resources :teams do
+    collection do
+      get 'destroy_equipment'
+      get 'destroy_gladiator'
+    end
+  end
   resources :gladiators
   resources :equipments
   resources :users

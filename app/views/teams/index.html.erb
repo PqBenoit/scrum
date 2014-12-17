@@ -31,6 +31,7 @@
                       <% t.gladiators.each do |g| %>
                           <p>
                             <i class="child icon"></i> <%= g.name %>
+                            <%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_gladiator', :remote => true, :team_id => g.team_id}) %>
                           </p>
                       <% end %>
                     </div>
@@ -51,7 +52,9 @@
             <% @gladiators.each do |g| %>
                 <div class="four wide column">
                   
-                  <p class="gladiator-name draggable-index" data-gladiator-id="<%= g.id %>"><i class="child icon"></i><%= g.name %></p>
+                  <p class="gladiator-name draggable-index" data-gladiator-id="<%= g.id %>">
+                    <i class="child icon"></i><%= g.name %>
+                  </p>
                 </div>
             <% end %>
           </div>

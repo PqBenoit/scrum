@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217133134) do
+ActiveRecord::Schema.define(version: 20141217145300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141217133134) do
     t.integer  "defense"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "points"
   end
 
   create_table "gladiator_equipments", force: true do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20141217133134) do
     t.integer  "user_id"
     t.integer  "equipment_id"
     t.integer  "gladiator_equipment_id"
+    t.integer  "points_equipment"
   end
 
   add_index "gladiators", ["equipment_id"], name: "index_gladiators_on_equipment_id", using: :btree
