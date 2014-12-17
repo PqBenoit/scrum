@@ -5,14 +5,14 @@
 <% if @gladiators.count > 0 %>
 	<% @gladiators.each do |gladiator| %>
 		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
-			<p><%= gladiator.name %></p>
+			<p><i class="child icon"></i><%= gladiator.name %></p>
 			<% if gladiator.equipment_id %>
 				<p><%= gladiator.equipment_id %></p>
 			<% end %>
 			<ul class='gladiator-equipments'>
 				<% if gladiator.equipments.count > 0 %>
 					<% gladiator.equipments.each do |ge| %>
-						<li><%= ge.name %></li>
+						<li><%= ge.name %><%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_equipment', :remote => true, :gladiator_id => gladiator.id, :equipment_id => ge.id}) %></li>
 					<% end %>
 				<% end %>
 			</ul>
@@ -25,7 +25,7 @@
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
 <% if @equipments.count > 0 %>
 		<% @equipments.each do |equipment| %>
-			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>">
+			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
 				<h3><%= equipment.name %></h3>
 				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
 				<!-- <p>Priorité: <%= equipment.priority %></p>

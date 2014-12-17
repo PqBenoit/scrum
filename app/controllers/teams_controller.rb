@@ -47,14 +47,22 @@ class TeamsController < ApplicationController
 	end
 
 	def set_equipment
-		@gladiator_equipment = GladiatorEquipment.new()
-		@equipment = Equipment.find(params[:id_equipement])
-		@gladiator = Gladiator.find(params[:id_gladiateur])
+		@gladiator_equipment = GladiatorEquipment.new
 
-		@gladiator_equipment.equipment_id = @equipment.id
-		@gladiator_equipment.gladiator_id = @gladiator.id
+		@gladiator_equipment.equipment_id = params[:id_equipement]
+		@gladiator_equipment.gladiator_id = params[:id_gladiateur]
 
 		@gladiator_equipment.save
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
+	end
+
+	def destroy_equipment
+		@gladiator_equipment = GladiatorEquipment.find_by(equipment_id: params[:equipment_id], gladiator_id: params[:gladiator_id])
+
+		@gladiator_equipment.destroy
 
 		respond_to do |format|
 			format.js { render inline: "location.reload();" }

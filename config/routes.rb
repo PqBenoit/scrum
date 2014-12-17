@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   # RESSOURCES
   devise_for :users
-  resources :teams
+  resources :teams do
+    collection do
+      get 'destroy_equipment'
+    end
+  end
   resources :gladiators
   resources :equipments
   resources :users
