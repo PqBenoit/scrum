@@ -1,21 +1,42 @@
-<% if @teams.count > 0 %>
-    <h2 class="ui top attached header"><i class="list icon"></i> Vos équipes</h2>
-    <div class="ui attached segment">
-      <% @teams.each do |t| %>
-          <h3>
-            <i class="users icon"></i> <%= t.name %>
-          </h3>
-          <% if t.gladiators.count > 0 %>
-              <div class="ui stacked segment">
-                <% t.gladiators.each do |g| %>
-                    <p>
-                      <i class="child icon"></i> <%= g.name %>
-                    </p>
-                <% end %>
-              </div>
-          <% end %>
-      <% end %>
-    </div>
+<% if user_signed_in? %>
+    <% if @teams.count > 0 %>
+        <h2 class="ui top attached header"><i class="list icon"></i> Vos équipes</h2>
+        <div class="ui attached segment">
+          <div class="ui grid">
+            <% @teams.each do |t| %>
+                <div class="four wide column">
+                  <h3>
+                    <i class="users icon"></i> <%= t.name %>
+                  </h3>
+                  <% if t.gladiators.count > 0 %>
+                      <div class="ui stacked segment">
+                        <% t.gladiators.each do |g| %>
+                            <p>
+                              <i class="child icon"></i> <%= g.name %>
+                            </p>
+                        <% end %>
+                      </div>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    <% else %>
+        <h1>Vous n'avez pas encore d'équipe !</h1>
+        <%= link_to(raw('<i class="users icon"></i>Ajouter une équipe'), new_team_path, :class => 'ui positive button') %>
+    <% end %>
 <% else %>
-    <h2>Vous n'avez pas encore d'équipe</h2>
+    <section id="home_sign">
+      <h1 class="ui header">Gladiators Game</h1>
+      <p class="ui segment">
+        Synergize communities innovate create tag mesh e-business--standards-compliant e-commerce collaborative, viral expedite podcasting. Maximize strategize, magnetic weblogs paradigms sexy plug-and-play B2C engage granular, integrate models content; remix revolutionary web services. Embrace interfaces webservices eyeballs create, "users mission-critical rich-clientAPIs expedite cross-platform user-centric." Holistic citizen-media e-business whiteboard addelivery syndicate platforms webservices sexy optimize; leading-edge capture wikis share; web-enabled. Markets. Global distributed grow incubate global aggregate extend, addelivery ubiquitous, "harness magnetic mission-critical viral, vortals life-hacks bleeding-edge convergence virtual action-items," communities dot-com target world-class. Engage interactive value content impactful create incubate disintermediate leverage proactive leverage visualize integrateAJAX-enabled semantic efficient reinvent innovative productize transition engage.
+      </p>
+      <div class="ui section divider"></div>
+      <h2>Entre dans l'arène !</h2>
+      <div class="massive ui buttons">
+        <div class="ui positive button"><%= link_to(raw('S\'enregistrer'), new_user_registration_path) %></div>
+        <div class="or" data-text="ou"></div>
+        <div class="ui button"><%= link_to(raw(' Se connecter'), user_session_path) %></div>
+      </div>
+    </section>
 <% end %>
