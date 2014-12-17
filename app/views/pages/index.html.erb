@@ -2,20 +2,24 @@
     <% if @teams.count > 0 %>
         <h2 class="ui top attached header"><i class="list icon"></i> Vos équipes</h2>
         <div class="ui attached segment">
+        <div class="ui grid">
           <% @teams.each do |t| %>
-              <h3>
-                <i class="users icon"></i> <%= t.name %>
-              </h3>
-              <% if t.gladiators.count > 0 %>
-                  <div class="ui stacked segment">
-                    <% t.gladiators.each do |g| %>
-                        <p>
-                          <i class="child icon"></i> <%= g.name %>
-                        </p>
-                    <% end %>
-                  </div>
-              <% end %>
+              <div class="four wide column">
+                <h3>
+                  <i class="users icon"></i> <%= t.name %>
+                </h3>
+                <% if t.gladiators.count > 0 %>
+                    <div class="ui stacked segment">
+                      <% t.gladiators.each do |g| %>
+                          <p>
+                            <i class="child icon"></i> <%= g.name %>
+                          </p>
+                      <% end %>
+                    </div>
+                <% end %>
+              </div>
           <% end %>
+        </div>
         </div>
     <% else %>
         <h1>Vous n'avez pas encore d'équipe !</h1>
@@ -30,9 +34,9 @@
       <div class="ui section divider"></div>
       <h2>Entre dans l'arène !</h2>
       <div class="massive ui buttons">
-        <div class="ui positive button">S'enregistrer</div>
+        <div class="ui positive button"><%= link_to(raw('S\'enregistrer'), new_user_registration_path) %></div>
         <div class="or" data-text="ou"></div>
-        <div class="ui button">Se connecter</div>
+        <div class="ui button"><%= link_to(raw(' Se connecter'), user_session_path) %></div>
       </div>
     </section>
 <% end %>
