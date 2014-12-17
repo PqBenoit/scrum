@@ -2,6 +2,7 @@ class ClassementController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @teams = Team.where(user_id: current_user.id)
+    @teams = Team.select(['name', 'description', 'victories', 'fights', 'cast((victories) as float)/cast((fights) as float)*100 as ratio']).order('ratio DESC').all
+    @top10teams = Team.select(['name', 'description', 'victories', 'fights', 'cast((victories) as float)/cast((fights) as float)*100 as ratio']).order('ratio DESC').all.limit(10)
   end
 end

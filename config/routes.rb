@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'classement/new'
-
-  get 'classement/create'
-
-  root 'pages#index'
+  root 'teams#index'
 
   # RESSOURCES
   devise_for :users

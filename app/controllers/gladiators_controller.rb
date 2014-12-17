@@ -10,6 +10,7 @@ class GladiatorsController < ApplicationController
 
 	def create
 		@gladiator = Gladiator.new(gladiator_params)
+		@gladiator.user_id = current_user.id
 		@gladiator.save
 
 		@team = Team.find_by_id(@gladiator.team_id)
@@ -22,6 +23,6 @@ class GladiatorsController < ApplicationController
 
 	private
 		def gladiator_params
-			params.require(:gladiator).permit(:name, :team_id)
+			params.require(:gladiator).permit(:name, :team_id, :user_id, :equipment_id)
 		end
 end

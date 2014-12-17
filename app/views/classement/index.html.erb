@@ -1,21 +1,50 @@
-<% if @teams.count > 0 %>
-    <h2 class="ui top attached header"><i class="trophy icon"></i> Classement général</h2>
-    <div class="ui attached segment">
-      <% @teams.each do |t| %>
-          <h3>
-            <i class="users icon"></i> <%= t.name %>
-          </h3>
-          <% if t.gladiators.count > 0 %>
-              <div class="ui stacked segment">
-                <% t.gladiators.each do |g| %>
-                    <p>
-                      <i class="child icon"></i> <%= g.name %>
-                    </p>
-                <% end %>
-              </div>
+<h2 class="ui top attached header"><i class="trophy icon"></i> Top 10</h2>
+<div class="ui attached segment">
+  <table class="ui table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Victories</th>
+      <th>Fights</th>
+      <th>Ratio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @top10teams.each do |t| %>
+        <tr>
+          <td><%= t.name %></td>
+          <td><%= t.description %></td>
+          <td><%= t.victories %></td>
+          <td><%= t.fights %></td>
+          <td><%= t.ratio %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<h2 class="ui top attached header"><i class="trophy icon"></i> Classement général</h2>
+<div class="ui attached segment">
+    <table class="ui table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Victories</th>
+            <th>Fights</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teams.each do |t| %>
+              <tr>
+                <td><%= t.name %></td>
+                <td><%= t.description %></td>
+                <td><%= t.victories %></td>
+                <td><%= t.fights %></td>
+                <td><%= t.ratio %></td>
+              </tr>
           <% end %>
-      <% end %>
-    </div>
-<% else %>
-    <h2>Vous n'avez pas encore d'équipe</h2>
-<% end %>
+        </tbody>
+    </table>
+</div>
