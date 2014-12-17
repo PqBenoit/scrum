@@ -25,9 +25,9 @@
     <section id="home_sign">
       <h1>Entre dans l'arène !</h1>
       <div class="massive ui buttons">
-        <div class="ui positive button">S'enregistrer</div>
+        <div class="ui positive button"><%= link_to(raw('S\'enregistrer'), new_user_registration_path) %></div>
         <div class="or" data-text="ou"></div>
-        <div class="ui button">Se connecter</div>
+        <div class="ui button"><%= link_to(raw(' Se connecter'), user_session_path) %></div>
       </div>
     </section>
 <% end %>

@@ -7,3 +7,6 @@
     text-align: center;
     font-size: 4rem;
 }
+#home_sign a, #home_sign a:visited, #home_sign a:hover {
+	color: white;
+}
