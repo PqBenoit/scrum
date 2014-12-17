@@ -7,3 +7,11 @@
     text-align: center;
     font-size: 4rem;
 }
+
+#home_sign h2 {
+    font-size: 3rem;
+}
+
+#home_sign p {
+    font-size: 1.5rem;
+}
