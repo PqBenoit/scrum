@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'classement/new'
+
+  get 'classement/create'
+
   root 'pages#index'
 
   # RESSOURCES
@@ -8,5 +12,6 @@ Rails.application.routes.draw do
   resources :gladiators
   resources :equipments
   resources :users
+  resources :classement
 
 end
