@@ -25,6 +25,24 @@
         <h1>Vous n'avez pas encore d'équipe !</h1>
         <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
     <% end %>
+
+    <% if @gladiators.count > 0 %>
+        <h2 class="ui top attached header"><i class="list icon"></i> Vos gladiateurs non assignés</h2>
+        <div class="ui attached segment">
+          <div class="ui grid">
+            <% @gladiators.each do |g| %>
+                <div class="four wide column">
+                  
+                  <p><%= g.name %></p>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    <% else %>
+        <h1>Vous n'avez pas encore de gladiateurs !</h1>
+        <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
+    <% end %>
+
 <% else %>
     <section id="home_sign">
       <h1>Entre dans l'arène !</h1>
