@@ -2,7 +2,10 @@ class TeamsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@teams = Team.where(user_id: current_user.id)
+		if current_user != nil
+	        @teams = Team.where(user_id: current_user.id)
+	        @gladiators = Gladiator.where(user_id: current_user.id)
+	    end
 	end
 
 	def show
