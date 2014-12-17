@@ -1,6 +1,6 @@
 <div class="ui grid">
 <div class="six wide column">
-  <h2>Sign up</h2>
+  <h2>S'enregistrer</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="ui form">
@@ -12,7 +12,7 @@
       <% end %>
     
       <div class="field">
-        <%= f.label :name %>
+        <%= f.label :name, "Pseudo" %>
         <div class="ui input">
           <%= f.text_field :name, :class => 'form-control' %>
         </div>
@@ -26,21 +26,21 @@
       </div>
       
       <div class="field">
-        <%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %>
+        <%= f.label :password, "Mot de passe" %> <% if @validatable %><i>(<%= @minimum_password_length %> caractères minimum)</i><% end %>
         <div class="ui input">
           <%= f.password_field :password, autocomplete: "off" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %>
+        <%= f.label :password_confirmation, "Confirmation du mot de passe" %>
         <div class="ui input">
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.submit "Sign up", :class => 'ui primary button' %>
+        <%= f.submit "S'enregistrer", :class => 'ui primary button' %>
       </div>
 
     </div>
