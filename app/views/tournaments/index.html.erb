@@ -1,0 +1,15 @@
+<div id="#ajax">
+  <% if @tournaments.count > 0 %>
+      <% @tournaments.each do |t| %>
+          <%
+             tournament_user = TournamentUser.where(tournament_id: t.id, user_id: current_user.id)
+             if tournament_user.any?
+          %>
+              <p><%= t.name %><%= link_to('Se désinscrire', {:action => 'unregister', :remote => true, :tournament_id => t.id}, {:class => 'ui negative button'}) %></p>
+          <% else %>
+              <p><%= t.name %><%= link_to('S\'inscrire', {:action => 'register', :remote => true, :tournament_id => t.id}, {:class => 'ui positive button'}) %></p>
+          <% end %>
+      <% end %>
+  <% else %>
+  <% end %>
+</div>

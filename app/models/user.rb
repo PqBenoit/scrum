@@ -4,5 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:name]
 
-   has_many :teams
+    has_many :teams
+    has_many :tournament_users
+    has_many :tournaments, :through => :tournament_users
 end

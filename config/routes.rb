@@ -8,5 +8,11 @@ Rails.application.routes.draw do
   resources :gladiators
   resources :equipments
   resources :users
+  resources :tournaments do
+    collection do
+      get 'register'
+      get 'unregister'
+    end
+  end
 
 end

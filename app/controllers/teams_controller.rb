@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:show, :new, :create, :update, :destroy]
 
 	def index
 		if current_user != nil
