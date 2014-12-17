@@ -17,7 +17,7 @@ $ ->
 			$(this).removeClass 'is-dragged'
 
 	$('.droppable').droppable
-		hoverClass: 'drop-hover-class',
+		hoverClass: 'green drop-hover-class',
 		drop: (event, ui) ->
 			$(this).addClass 'item-added'
 			setTimeout ( ->
@@ -33,7 +33,3 @@ $ ->
 					id_equipement: id_equipement
 					id_gladiateur: id_gladiateur
 			)
-			
-
-
-		
