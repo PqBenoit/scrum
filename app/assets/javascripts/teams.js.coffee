@@ -38,11 +38,13 @@ $ ->
 	$('.draggable-index').draggable
 		snap: '.droppable'
 
-	team_id = $('.droppable-index').attr('data-team-id')
+	
 	gladiator_id = $('.draggable-index').attr('data-gladiator-id')
 
 	$('.droppable-index').droppable
 		drop: (event, ui) ->
+			team_id = $(this).attr('data-team-id')
+			alert team_id
 			$.ajax(
 				type: "POST"
 				url: $(this).attr('data-url')

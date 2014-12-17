@@ -9,9 +9,9 @@
         </div>
         </div>
 
-        <div class="field">
+        <!-- <div class="field">
             <%= f.collection_select(:team_id, Team.where( user_id: current_user.id ), :id, :name, { :prompt => true }, :class => 'ui dropdown', :id => 'select') %>
-        </div>
+        </div> -->
 
         <div class="field">
             <%= f.submit 'Créer', :class => 'ui primary button' %>
