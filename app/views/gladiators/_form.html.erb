@@ -1,13 +1,23 @@
+<div class="ui grid">
+  <div class="six wide column">
 <%= form_for :gladiator, url: gladiators_path do |f| %>
-	<p>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-	</p>
+    <div class="ui form">
 
-	<p>
-		<%= f.label :team %>
-		<%= f.collection_select(:team_id, Team.where( user_id: current_user.id ), :id, :name, { :prompt => true }) %>
-	</p>
+        <div class="field">
+        <div class="ui input">
+            <%= f.text_field :name, :placeholder => 'Nom du gladiateur' %>
+        </div>
+        </div>
 
-	<%= f.submit %>
+        <div class="field">
+            <%= f.collection_select(:team_id, Team.where( user_id: current_user.id ), :id, :name, { :prompt => true }, :class => 'ui dropdown', :id => 'select') %>
+        </div>
+
+        <div class="field">
+            <%= f.submit 'Créer', :class => 'ui primary button' %>
+        </div>
+
+    </div>
 <% end %>
+    </div>
+</div>
