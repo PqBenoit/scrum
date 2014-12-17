@@ -22,7 +22,7 @@
         <div class="ui attached segment">
         <div class="ui grid">
           <% @teams.each do |t| %>
-              <div class="four wide column">
+              <div class="four wide column droppable-index" data-url="<%= set_gladiator_path %>" data-team-id="<%= t.id %>">
                 <h3>
                   <i class="users icon"></i> <%= link_to(t.name, team_path(id: t.id)) %>
                 </h3>
@@ -51,7 +51,7 @@
             <% @gladiators.each do |g| %>
                 <div class="four wide column">
                   
-                  <p><i class="child icon"></i><%= g.name %></p>
+                  <p class="gladiator-name draggable-index" data-gladiator-id="<%= g.id %>"><i class="child icon"></i><%= g.name %></p>
                 </div>
             <% end %>
           </div>

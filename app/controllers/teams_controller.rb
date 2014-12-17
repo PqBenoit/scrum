@@ -61,6 +61,19 @@ class TeamsController < ApplicationController
 		end
 	end
 
+	def set_gladiator
+		@team = Team.find(params[:team_id])
+		@gladiator = Gladiator.find(params[:gladiator_id])
+
+		@gladiator.team_id = @team.id
+
+		@gladiator.save
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
+	end
+
 	private
 		def team_params
 			params.require(:team).permit(:name, :description)
