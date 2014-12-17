@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 	def index
 		if current_user != nil
 	        @teams = Team.where(user_id: current_user.id)
-	        @gladiators = Gladiator.where(team_id: '')
+	        @gladiators = Gladiator.where(team_id: nil)
 	    end
 	end
 
@@ -44,6 +44,21 @@ class TeamsController < ApplicationController
 		@team.destroy
 
 		render 'index'
+	end
+
+	def set_equipment
+		@gladiator_equipment = GladiatorEquipment.new()
+		@equipment = Equipment.find(params[:id_equipement])
+		@gladiator = Gladiator.find(params[:id_gladiateur])
+
+		@gladiator_equipment.equipment_id = @equipment.id
+		@gladiator_equipment.gladiator_id = @gladiator.id
+
+		@gladiator_equipment.save
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
 	end
 
 	private
