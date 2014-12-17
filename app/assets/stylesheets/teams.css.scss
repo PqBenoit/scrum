@@ -13,10 +13,6 @@
 .reset-float {
 	clear: both;
 }
-
-.droppable {
-	transition: 1s ease;
-	list-style: none;
-	text-align: center;
-	float: left;
+.drop-hover-class .header {
+	color: white !important;
 }
