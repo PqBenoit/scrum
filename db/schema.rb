@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20141217145300) do
     t.datetime "updated_at"
   end
 
+  create_table "user_teams", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "team_id"
+  end
+
+  add_index "user_teams", ["team_id"], name: "index_user_teams_on_team_id", using: :btree
+  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
