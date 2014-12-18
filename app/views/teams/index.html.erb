@@ -1,6 +1,24 @@
 <% if user_signed_in? %>
+    <% if current_user.tournaments.count > 0 %>
+        <h2 class="ui top attached header">Vos prochains tournois</h2>
+        <div class="ui attached segment">
+          <div class="ui grid">
+            <% current_user.tournaments.each do |ut| %>
+                <div class="four wide column">
+                  <h3>
+                    <i class="protect icon"></i> <%= ut.name %>
+                  </h3>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    <% else %>
+        <h1>Vous n'avez pas encore d'équipe !</h1>
+        <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
+    <% end %>
+
     <% if @teams.count > 0 %>
-        <h2 class="ui top attached header"><i class="list icon"></i> Vos équipes</h2>
+        <h2 class="ui top attached header">Vos équipes</h2>
         <div class="ui attached segment">
         <div class="ui grid">
           <% @teams.each do |t| %>
@@ -27,13 +45,13 @@
     <% end %>
 
     <% if @gladiators.count > 0 %>
-        <h2 class="ui top attached header"><i class="list icon"></i> Vos gladiateurs non assignés</h2>
+        <h2 class="ui top attached header">Vos gladiateurs non assignés</h2>
         <div class="ui attached segment">
           <div class="ui grid">
             <% @gladiators.each do |g| %>
                 <div class="four wide column">
                   
-                  <p><%= g.name %></p>
+                  <p><i class="child icon"></i><%= g.name %></p>
                 </div>
             <% end %>
           </div>
@@ -45,7 +63,12 @@
 
 <% else %>
     <section id="home_sign">
-      <h1>Entre dans l'arène !</h1>
+      <h1>Gladiators Game</h1>
+      <p>
+        Synergize communities innovate create tag mesh e-business--standards-compliant e-commerce collaborative, viral expedite podcasting. Maximize strategize, magnetic weblogs paradigms sexy plug-and-play B2C engage granular, integrate models content; remix revolutionary web services. Embrace interfaces webservices eyeballs create, "users mission-critical rich-clientAPIs expedite cross-platform user-centric." Holistic citizen-media e-business whiteboard addelivery syndicate platforms webservices sexy optimize; leading-edge capture wikis share; web-enabled. Markets. Global distributed grow incubate global aggregate extend, addelivery ubiquitous, "harness magnetic mission-critical viral, vortals life-hacks bleeding-edge convergence virtual action-items," communities dot-com target world-class. Engage interactive value content impactful create incubate disintermediate leverage proactive leverage visualize integrateAJAX-enabled semantic efficient reinvent innovative productize transition engage.
+      </p>
+      <div class="ui section divider"></div>
+      <h2>Entre dans l'arène !</h2>
       <div class="massive ui buttons">
         <div class="ui positive button"><%= link_to(raw('S\'enregistrer'), new_user_registration_path) %></div>
         <div class="or" data-text="ou"></div>
