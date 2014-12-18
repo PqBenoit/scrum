@@ -3,13 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-	console.log 'hello'
+
+	id_equipement = ''
 
 	$('.draggable').draggable
 		snap: '.droppable',
 		revert: true,
 		drag: (event, ui) ->
 			$(this).addClass 'is-dragged'
+			id_equipement = $(this).attr("data-equipment-id")
 
 		stop: (event, ui) ->
 			$(this).removeClass 'is-dragged'
@@ -22,5 +24,12 @@ $ ->
 				$('.item-added').removeClass('item-added')
 			), 500
 			toClone = '<li>' + $('.is-dragged').find('h3').text() + '</li>'
+			id_gladiateur = $(this).attr('data-id-gladiator')
 			$(this).find($('.gladiator-equipments')).append(toClone)
-			
+			$.ajax(
+				type: "POST"
+				url: $(this).attr('data-url')
+				data:
+					id_equipement: id_equipement
+					id_gladiateur: id_gladiateur
+			)

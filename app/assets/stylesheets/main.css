@@ -20,3 +20,10 @@
 	color: white;
 
 }
+
+.white.button {
+    background: none !important;
+}
+.white.button a>i {
+    color: #808080;
+}

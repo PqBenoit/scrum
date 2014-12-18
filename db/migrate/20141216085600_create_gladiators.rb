@@ -4,7 +4,6 @@ class CreateGladiators < ActiveRecord::Migration
       t.string :name
       t.integer :victories
       t.integer :fights
-      t.belongs_to :team
       t.timestamps
     end
   end

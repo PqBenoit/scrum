@@ -5,8 +5,11 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def send_invite
+    @mailer = ActionMailer::Base
     @email = params[:email]
-    mail(to: @email, subject: 'VENEZ JOUER !')
+    @mailer.mail(to: @email, subject: 'VENEZ JOUER !')
+
+    redirect_to root_path, notice: 'L\'invitation a été envoyée !'
   end
 
   protected
