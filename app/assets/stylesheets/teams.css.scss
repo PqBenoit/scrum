@@ -1,23 +1,29 @@
-// Place all the styles related to the teams controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .single-equipment h3 {
 	margin: 0;
 }
 
 .single-equipment:hover {
-	cursor: pointer;
+	cursor: move;
 }
-
+.single-equipment {
+  height: auto !important;
+  width: auto !important;
+}
 .reset-float {
 	clear: both;
 }
 
 .gladiator-name {
 	text-align: center;
+    border: 1px dashed transparent;
 }
 
 .gladiator-name:hover {
-	cursor: pointer;
+	cursor:move;
+    border: 1px dashed #CCC
 }
+
+.team-drop {
+    background: #FAFAFA;
+}
+

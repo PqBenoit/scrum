@@ -1,32 +1,34 @@
-<h1><%= @team.name %></h1>
+<h1 class="ui dividing header"><i class="users icon"></i> <%= @team.name %></h1>
 <p><%= @team.description %></p>
 
-<h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
+    <h2>Gladiateurs</h2>
 	<% @gladiators.each do |gladiator| %>
-		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
-			<p><i class="child icon"></i><%= gladiator.name %></p>
+		<div class="droppable ui message" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
+			<p class="header"><i class="child icon"></i><%= gladiator.name %> | <%= gladiator.points_equipment %> pts</p>
 			<% if gladiator.equipment_id %>
 				<p><%= gladiator.equipment_id %></p>
 			<% end %>
 			<ul class='gladiator-equipments'>
 				<% if gladiator.equipments.count > 0 %>
 					<% gladiator.equipments.each do |ge| %>
-						<li><%= ge.name %><%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_equipment', :remote => true, :gladiator_id => gladiator.id, :equipment_id => ge.id}) %></li>
+						<li><%= ge.name %><%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_equipment', :remote => true, :gladiator_id => gladiator.id, :equipment_id => ge.id, :points_equipement => ge.points}) %></li>
 					<% end %>
 				<% end %>
 			</ul>
 		</div>
+    </div>
 	<% end %>
-	<div class="reset-float"></div>		
+	<div class="reset-float"></div>
 <% end %>
-<%= link_to("Créer un gladiateur", new_gladiator_path, class: 'positive ui button') %>
-<h2>Equipements</h2>
-<p>Glisser un équipement sur un gladiateur pour l'équiper</p>
+<h2 class="ui header">Equipements
+  <div class="sub header">Glisser un équipement sur un gladiateur pour l'équiper</div>
+</h2>
 <% if @equipments.count > 0 %>
 		<% @equipments.each do |equipment| %>
-			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
-				<h3><%= equipment.name %></h3>
+			<div class="single-equipment draggable ui label" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
+				<%= equipment.name %>
+                <div class="detail"><%= equipment.points %> pts</div>
 				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
 				<!-- <p>Priorité: <%= equipment.priority %></p>
 				<p>Dommages: <%= equipment.damage %></p>
@@ -36,7 +38,6 @@
 	</ul>
 	<div class="reset-float"></div>
 <% end %>
-	
-<h2>Options</h2>
-<%= link_to("Modifier l'équipe", [:edit, @team], class: 'primary ui button') %>
-<%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'negative ui button') %>
+<br/><br/>
+<%= link_to("Modifier l'équipe", [:edit, @team], class: 'left attached primary ui button') %>
+<%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'right attached negative ui button') %>
