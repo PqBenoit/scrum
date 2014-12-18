@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
 
 	has_many :gladiators
 
+	validates :name, uniqueness: true
+
 	def get_best_team
 		@users = User.all
 		@bestTeams = Hash.new
