@@ -37,10 +37,9 @@ $ ->
 
 	$('.draggable-index').draggable
 		snap: '.droppable',
-		revert: true
-
-	
-	gladiator_id = $('.draggable-index').attr('data-gladiator-id')
+		revert: true,
+		drag: (event, ui) ->
+			gladiator_id = $('.draggable-index').attr('data-gladiator-id')
 
 	$('.droppable-index').droppable
 		drop: (event, ui) ->
