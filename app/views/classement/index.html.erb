@@ -1,4 +1,10 @@
 <h2 class="ui top attached header"><i class="trophy icon"></i> Top 10</h2>
+  <% @userteam.each do |ut| %>
+    <% ut.each do |team| %>
+      <h1><%= team.name %></h1>
+    <% end %>
+  <% end %>
+
 <div class="ui attached segment">
   <table class="ui table">
     <thead>
