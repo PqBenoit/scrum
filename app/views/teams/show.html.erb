@@ -5,22 +5,18 @@
 <% if @gladiators.count > 0 %>
 	<% @gladiators.each do |gladiator| %>
 		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
-			<p><i class="child icon"></i><%= gladiator.name %></p>
-			<% if gladiator.equipment_id %>
-				<p><%= gladiator.equipment_id %></p>
-			<% end %>
+			<p><i class="child icon"></i><%= gladiator.name %> | <%= gladiator.points_equipment %> pts</p>
 			<ul class='gladiator-equipments'>
 				<% if gladiator.equipments.count > 0 %>
 					<% gladiator.equipments.each do |ge| %>
-						<li><%= ge.name %><%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_equipment', :remote => true, :gladiator_id => gladiator.id, :equipment_id => ge.id}) %></li>
+						<li><%= ge.name %><%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_equipment', :remote => true, :gladiator_id => gladiator.id, :equipment_id => ge.id, :points_equipement => ge.points}) %></li>
 					<% end %>
 				<% end %>
 			</ul>
 		</div>
 	<% end %>
-	<div class="reset-float"></div>		
+	<div class="reset-float"></div>
 <% end %>
-<%= link_to("Créer un gladiateur", new_gladiator_path, class: 'positive ui button') %>
 <h2>Equipements</h2>
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
 <% if @equipments.count > 0 %>
