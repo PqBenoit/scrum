@@ -1,9 +1,12 @@
-<h1><%= @team.name %></h1>
+<h1 class="ui dividing header"><i class="users icon"></i> <%= @team.name %></h1>
 <p><%= @team.description %></p>
 
-<h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
+    <h2 class="ui top attached header">Gladiateurs</h2>
+    <div class="ui attached segment">
+    <div class="ui grid">
 	<% @gladiators.each do |gladiator| %>
+    <div class="four wide column">
 		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
 			<p><i class="child icon"></i><%= gladiator.name %> | <%= gladiator.points_equipment %> pts</p>
 			<ul class='gladiator-equipments'>
@@ -14,25 +17,34 @@
 				<% end %>
 			</ul>
 		</div>
+    </div>
 	<% end %>
+    </div>
+    </div>
 	<div class="reset-float"></div>
 <% end %>
-<h2>Equipements</h2>
-<p>Glisser un équipement sur un gladiateur pour l'équiper</p>
+<h2 class="ui top attached header">Equipements
+  <div class="sub header">Glisser un équipement sur un gladiateur pour l'équiper</div>
+</h2>
+<div class="ui attached segment">
+<div class="ui grid">
 <% if @equipments.count > 0 %>
-		<% @equipments.each do |equipment| %>
-			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
-				<h3><%= equipment.name %></h3>
-				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
-				<!-- <p>Priorité: <%= equipment.priority %></p>
-				<p>Dommages: <%= equipment.damage %></p>
-				<p>Défense: <%= equipment.defense %></p> -->
-			</div>
-		<% end %>
-	</ul>
-	<div class="reset-float"></div>
+    <% @equipments.each do |equipment| %>
+    <div class="four wide column">
+        <div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
+            <h3 class="ui header"><%= equipment.name %>
+              <div class="sub header"><%= equipment.points %> pts</div>
+            </h3>
+            <!-- <p>Priorité: <%= equipment.priority %></p>
+            <p>Dommages: <%= equipment.damage %></p>
+            <p>Défense: <%= equipment.defense %></p> -->
+        </div>
+    </div>
+    <% end %>
+    <div class="reset-float"></div>
 <% end %>
-	
-<h2>Options</h2>
-<%= link_to("Modifier l'équipe", [:edit, @team], class: 'primary ui button') %>
-<%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'negative ui button') %>
+</div>
+</div>
+
+<%= link_to("Modifier l'équipe", [:edit, @team], class: 'left attached primary ui button') %>
+<%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'right attached negative ui button') %>

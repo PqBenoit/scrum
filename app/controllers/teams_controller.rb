@@ -52,7 +52,11 @@ class TeamsController < ApplicationController
 
 		@gladiator_equipment.equipment_id = params[:id_equipement]
 		@gladiator_equipment.gladiator_id = params[:id_gladiateur]
-		@gladiator.points_equipment = @gladiator.points_equipment + params[:points_equipement].to_i
+		points = @gladiator.points_equipment
+		if points == ''
+			points = 0
+		end
+		@gladiator.points_equipment = points.to_i+params[:points_equipement].to_i
 
 		@gladiator_equipment.save
 		@gladiator.save
@@ -64,12 +68,13 @@ class TeamsController < ApplicationController
 
 	def destroy_equipment
 		@gladiator_equipment = GladiatorEquipment.find_by(equipment_id: params[:equipment_id], gladiator_id: params[:gladiator_id])
-		@gladiator = Gladiator.find(params[:gladiator_id])
-		points = @gladiator.points_equipment - params[:points_equipement].to_i
-		if points < 0
+		@gladiator = Gladiator.find_by_id(params[:gladiator_id])
+		points = @gladiator.points_equipment
+		if points == '' || points < 0
 			points = 0
 		end
-		@gladiator.points_equipment = points
+		@gladiator.points_equipment = points - params[:points_equipement].to_i
+
 		@gladiator.save
 		@gladiator_equipment.destroy
 
