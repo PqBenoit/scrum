@@ -3,9 +3,12 @@
 }
 
 .single-equipment:hover {
-	cursor: pointer;
+	cursor: move;
 }
-
+.single-equipment {
+  height: auto !important;
+  width: auto !important;
+}
 .reset-float {
 	clear: both;
 }
@@ -23,3 +26,4 @@
 .team-drop {
     background: #FAFAFA;
 }
+

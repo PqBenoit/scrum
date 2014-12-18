@@ -28,10 +28,16 @@
           <% else %>
               <%= link_to(raw('<i class="child icon"></i> Ajouter un gladiateur'), new_gladiator_path, :class => 'ui item') %>
           <% end %>
+          <% if current_page?(classement_index_path) %>
+              <%= link_to(raw('<i class="trophy icon"></i> Classements'), classement_index_path, :class => 'ui active item') %>
+          <% else %>
+              <%= link_to(raw('<i class="trophy icon"></i> Classements'), classement_index_path, :class => 'ui item') %>
+          <% end %>
           <% if current_page?(tournaments_path) %>
               <%= link_to(raw('<i class="protect icon"></i> Tournois'), tournaments_path, :class => 'ui active item') %>
           <% else %>
               <%= link_to(raw('<i class="protect icon"></i> Tournois'), tournaments_path, :class => 'ui item') %>
+
           <% end %>
         <% end %>
         <div class="right menu">

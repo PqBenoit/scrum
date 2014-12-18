@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :gladiators
   resources :equipments
   resources :users
+  resources :classement
   resources :tournaments do
     collection do
       get 'register'

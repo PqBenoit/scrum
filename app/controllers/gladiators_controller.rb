@@ -1,7 +1,7 @@
 class GladiatorsController < ApplicationController
 	before_action :authenticate_user!
 	def index 
-		@gladiators = Gladiator.all
+		@gladiators = Gladiator.all.order('name')
 	end
 
 	def show

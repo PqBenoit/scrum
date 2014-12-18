@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
 
 	def show
 		@team = Team.find(params[:id])
-		@gladiators = Gladiator.where(team_id: @team.id)
+		@gladiators = Gladiator.where(team_id: @team.id).order('name')
 		@equipments = Equipment.all
 	end
 
@@ -97,7 +97,7 @@ class TeamsController < ApplicationController
 	end
 
 	def destroy_gladiator
-		@gladiator = Gladiator.find_by(team_id: params[:team_id])
+		@gladiator = Gladiator.find_by(team_id: params[:team_id], id: params[:gladiator_id])
 		
 		@gladiator.team_id = ''
 

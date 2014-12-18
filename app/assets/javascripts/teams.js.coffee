@@ -15,6 +15,7 @@ $(document).on 'ready page:load', ->
 			$(this).removeClass 'is-dragged'
 
 	$('.droppable').droppable
+		hoverClass: 'green'
 		drop: (event, ui) ->
 			$(this).addClass 'item-added'
 			setTimeout ( ->
@@ -59,3 +60,4 @@ $(document).on 'ready page:load', ->
 										team_id: team_id
 										gladiator_id: gladiator_id
 						)
+

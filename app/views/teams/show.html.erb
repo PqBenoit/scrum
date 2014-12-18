@@ -2,13 +2,13 @@
 <p><%= @team.description %></p>
 
 <% if @gladiators.count > 0 %>
-    <h2 class="ui top attached header">Gladiateurs</h2>
-    <div class="ui attached segment">
-    <div class="ui grid">
+    <h2>Gladiateurs</h2>
 	<% @gladiators.each do |gladiator| %>
-    <div class="four wide column">
-		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
-			<p><i class="child icon"></i><%= gladiator.name %> | <%= gladiator.points_equipment %> pts</p>
+		<div class="droppable ui message" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>" data-gladiator-points="<%= gladiator.points_equipment %>">
+			<p class="header"><i class="child icon"></i><%= gladiator.name %> | <%= gladiator.points_equipment %> pts</p>
+			<% if gladiator.equipment_id %>
+				<p><%= gladiator.equipment_id %></p>
+			<% end %>
 			<ul class='gladiator-equipments'>
 				<% if gladiator.equipments.count > 0 %>
 					<% gladiator.equipments.each do |ge| %>
@@ -19,32 +19,25 @@
 		</div>
     </div>
 	<% end %>
-    </div>
-    </div>
 	<div class="reset-float"></div>
 <% end %>
-<h2 class="ui top attached header">Equipements
+<h2 class="ui header">Equipements
   <div class="sub header">Glisser un équipement sur un gladiateur pour l'équiper</div>
 </h2>
-<div class="ui attached segment">
-<div class="ui grid">
 <% if @equipments.count > 0 %>
-    <% @equipments.each do |equipment| %>
-    <div class="four wide column">
-        <div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
-            <h3 class="ui header"><%= equipment.name %>
-              <div class="sub header"><%= equipment.points %> pts</div>
-            </h3>
-            <!-- <p>Priorité: <%= equipment.priority %></p>
-            <p>Dommages: <%= equipment.damage %></p>
-            <p>Défense: <%= equipment.defense %></p> -->
-        </div>
-    </div>
-    <% end %>
-    <div class="reset-float"></div>
+		<% @equipments.each do |equipment| %>
+			<div class="single-equipment draggable ui label" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
+				<%= equipment.name %>
+                <div class="detail"><%= equipment.points %> pts</div>
+				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
+				<!-- <p>Priorité: <%= equipment.priority %></p>
+				<p>Dommages: <%= equipment.damage %></p>
+				<p>Défense: <%= equipment.defense %></p> -->
+			</div>
+		<% end %>
+	</ul>
+	<div class="reset-float"></div>
 <% end %>
-</div>
-</div>
-
+<br/><br/>
 <%= link_to("Modifier l'équipe", [:edit, @team], class: 'left attached primary ui button') %>
 <%= link_to("Supprimer l'équipe", @team, :method => :delete, class: 'right attached negative ui button') %>
