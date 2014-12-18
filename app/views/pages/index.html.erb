@@ -1,0 +1,68 @@
+
+<% if user_signed_in? %>
+    <% if @teams.count > 0 %>
+        <h2 class="ui top attached header"><i class="list icon"></i> Vos équipes</h2>
+        <div class="ui attached segment">
+        <div class="ui grid">
+          <% @teams.each do |t| %>
+              <div class="four wide column">
+                <h3>
+                  <i class="users icon"></i> <%= t.name %>
+                </h3>
+                <% if t.gladiators.count > 0 %>
+                    <div class="ui stacked segment">
+                      <% t.gladiators.each do |g| %>
+                          <p>
+                            <i class="child icon"></i> <%= g.name %>
+                          </p>
+                      <% end %>
+                    </div>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+        </div>
+        <h2 class="ui top attached header"><i class="trophy icon"></i> Classement</h2>
+        <div class="ui attached segment">
+          <div class="ui grid">
+                <div class="four wide column">
+                  <h3>
+                    <i class="bookmark icon"></i> Classement Général
+                  </h3>
+                  <div class="ui stacked segment">
+                    <p>Content</p>
+                  </div>
+                </div>
+                <div class="four wide column">
+                  <h3>
+                    <i class="bookmark icon"></i> Top 10
+                  </h3>
+                      <div class="ui stacked segment">
+                            <p>Content</p>
+                      </div>
+                </div>
+                <div class="four wide column">
+                  <h3>
+                    <i class="bookmark icon"></i> Mon classement
+                  </h3>
+                  <div class="ui stacked segment">
+                    <p>Position</p>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+    <% else %>
+        <h1>Vous n'avez pas encore d'équipe !</h1>
+        <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
+    <% end %>
+<% else %>
+    <section id="home_sign">
+      <h1>Entre dans l'arène !</h1>
+      <div class="massive ui buttons">
+        <div class="ui positive button"><%= link_to(raw('S\'enregistrer'), new_user_registration_path) %></div>
+        <div class="or" data-text="ou"></div>
+        <div class="ui button"><%= link_to(raw(' Se connecter'), user_session_path) %></div>
+      </div>
+    </section>
+<% end %>

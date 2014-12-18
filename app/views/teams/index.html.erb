@@ -12,9 +12,6 @@
             <% end %>
           </div>
         </div>
-    <% else %>
-        <h1>Vous n'avez pas encore d'équipe !</h1>
-        <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
     <% end %>
 
     <% if @teams.count > 0 %>
@@ -22,7 +19,7 @@
         <div class="ui attached segment">
         <div class="ui grid">
           <% @teams.each do |t| %>
-              <div class="four wide column">
+              <div class="four wide column droppable-index" data-url="<%= set_gladiator_path %>" data-team-id="<%= t.id %>">
                 <h3>
                   <i class="users icon"></i> <%= link_to(t.name, team_path(id: t.id)) %>
                 </h3>
@@ -31,6 +28,7 @@
                       <% t.gladiators.each do |g| %>
                           <p>
                             <i class="child icon"></i> <%= g.name %>
+                            <%= link_to(raw('<i class="remove red icon"></i>'), {:action => 'destroy_gladiator', :remote => true, :gladiator_id => g.id, :team_id => g.team_id}) %>
                           </p>
                       <% end %>
                     </div>
@@ -45,20 +43,20 @@
     <% end %>
 
     <% if @gladiators.count > 0 %>
-        <h2 class="ui top attached header">Vos gladiateurs non assignés</h2>
+        <h2 class="ui top attached header">Vos gladiateurs non assignés
+          <div class="sub header">Glisser un gladiateur sur une équipe pour l'assigner</div>
+        </h2>
         <div class="ui attached segment">
           <div class="ui grid">
             <% @gladiators.each do |g| %>
                 <div class="four wide column">
-                  
-                  <p><i class="child icon"></i><%= g.name %></p>
+                  <h3 class="gladiator-name draggable-index" data-gladiator-id="<%= g.id %>">
+                    <i class="child icon"></i><%= g.name %>
+                  </h3>
                 </div>
             <% end %>
           </div>
         </div>
-    <% else %>
-        <h1>Vous n'avez pas encore de gladiateurs !</h1>
-        <div class="ui positive button"><i class="users icon"></i>Ajouter une équipe</div>
     <% end %>
 
 <% else %>

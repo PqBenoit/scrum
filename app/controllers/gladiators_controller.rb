@@ -1,7 +1,7 @@
 class GladiatorsController < ApplicationController
 	before_action :authenticate_user!
 	def index 
-		@gladiators = Gladiator.all
+		@gladiators = Gladiator.all.order('name')
 	end
 
 	def show
@@ -15,7 +15,7 @@ class GladiatorsController < ApplicationController
 
 		@team = Team.find_by_id(@gladiator.team_id)
 
-		redirect_to @team
+		redirect_to root_path
 	end
 
 	def new

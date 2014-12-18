@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
 
 	def show
 		@team = Team.find(params[:id])
-		@gladiators = Gladiator.where(team_id: @team.id)
+		@gladiators = Gladiator.where(team_id: @team.id).order('name')
 		@equipments = Equipment.all
 	end
 
@@ -48,11 +48,18 @@ class TeamsController < ApplicationController
 
 	def set_equipment
 		@gladiator_equipment = GladiatorEquipment.new
+		@gladiator = Gladiator.find(params[:id_gladiateur])
 
 		@gladiator_equipment.equipment_id = params[:id_equipement]
 		@gladiator_equipment.gladiator_id = params[:id_gladiateur]
+		points = @gladiator.points_equipment
+		if points == ''
+			points = 0
+		end
+		@gladiator.points_equipment = points.to_i+params[:points_equipement].to_i
 
 		@gladiator_equipment.save
+		@gladiator.save
 
 		respond_to do |format|
 			format.js { render inline: "location.reload();" }
@@ -61,8 +68,40 @@ class TeamsController < ApplicationController
 
 	def destroy_equipment
 		@gladiator_equipment = GladiatorEquipment.find_by(equipment_id: params[:equipment_id], gladiator_id: params[:gladiator_id])
+		@gladiator = Gladiator.find_by_id(params[:gladiator_id])
+		points = @gladiator.points_equipment
+		if points == '' || points < 0
+			points = 0
+		end
+		@gladiator.points_equipment = points - params[:points_equipement].to_i
 
+		@gladiator.save
 		@gladiator_equipment.destroy
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
+	end
+
+	def set_gladiator
+		@team = Team.find(params[:team_id])
+		@gladiator = Gladiator.find(params[:gladiator_id])
+
+		@gladiator.team_id = @team.id
+
+		@gladiator.save
+
+		respond_to do |format|
+			format.js { render inline: "location.reload();" }
+		end
+	end
+
+	def destroy_gladiator
+		@gladiator = Gladiator.find_by(team_id: params[:team_id], id: params[:gladiator_id])
+		
+		@gladiator.team_id = ''
+
+		@gladiator.save
 
 		respond_to do |format|
 			format.js { render inline: "location.reload();" }
