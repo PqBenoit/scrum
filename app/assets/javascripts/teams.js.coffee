@@ -33,3 +33,21 @@ $ ->
 					id_equipement: id_equipement
 					id_gladiateur: id_gladiateur
 			)
+
+
+	$('.draggable-index').draggable
+		snap: '.droppable'
+
+	
+	gladiator_id = $('.draggable-index').attr('data-gladiator-id')
+
+	$('.droppable-index').droppable
+		drop: (event, ui) ->
+			team_id = $(this).attr('data-team-id')
+			$.ajax(
+				type: "POST"
+				url: $(this).attr('data-url')
+				data:
+					team_id: team_id
+					gladiator_id: gladiator_id
+			)

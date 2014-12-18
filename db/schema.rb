@@ -45,10 +45,12 @@ ActiveRecord::Schema.define(version: 20141217145300) do
     t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "equipment_id"
+    t.integer  "gladiator_equipment_id"
     t.integer  "points_equipment"
   end
 
   add_index "gladiators", ["equipment_id"], name: "index_gladiators_on_equipment_id", using: :btree
+  add_index "gladiators", ["gladiator_equipment_id"], name: "index_gladiators_on_gladiator_equipment_id", using: :btree
   add_index "gladiators", ["team_id"], name: "index_gladiators_on_team_id", using: :btree
   add_index "gladiators", ["user_id"], name: "index_gladiators_on_user_id", using: :btree
 
