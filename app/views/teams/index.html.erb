@@ -1,4 +1,6 @@
 <% if user_signed_in? %>
+<div class="ui grid">
+<div class="ten wide column">
     <% if current_user.tournaments.count > 0 %>
         <h2 class="ui top attached header">Vos prochains tournois</h2>
         <div class="ui attached segment">
@@ -58,6 +60,74 @@
           </div>
         </div>
     <% end %>
+</div>
+<div class="six wide column">
+    <h2 class="ui top attached header">Classement</h2>
+    <div class="ui attached segment">
+      <h3>Votre prosition</h3>
+      <table class="ui table">
+        <thead>
+        <tr>
+          <th>Position</th>
+          <th>Joueur</th>
+          <th>Nom de l'équipe</th>
+          <th>Victories</th>
+          <th>Fights</th>
+          <th>% victoires</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% id = current_user.id %>
+        <% @bestTeams.each do |uId, t| %>
+            <% if uId == id %>
+                <tr>
+                  <td><%= t['pos'] %></td>
+                  <td><%= t['username'] %></td>
+                  <td><%= t['name'] %></td>
+                  <td><%= t['victories'] %></td>
+                  <td><%= t['fights'] %></td>
+                  <td><%= t['ratio'] %> %</td>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="ui attached segment">
+      <h3>Top 10</h3>
+      <table class="ui table">
+        <thead>
+        <tr>
+          <th>Position</th>
+          <th>Joueur</th>
+          <th>Nom de l'équipe</th>
+          <th>Victories</th>
+          <th>Fights</th>
+          <th>% victoires</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% c = 0 %>
+        <% @bestTeams.each do |uId, t| %>
+            <% c+= 1 %>
+            <% if c <= 10 %>
+                <tr>
+                  <td><%= t['pos'] %></td>
+                  <td><%= t['username'] %></td>
+                  <td><%= t['name'] %></td>
+                  <td><%= t['victories'] %></td>
+                  <td><%= t['fights'] %></td>
+                  <td><%= t['ratio'] %> %</td>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="ui hidden divider"></div>
+  <%= link_to(raw('<i class="trophy icon"></i> Classement général'), classement_index_path, :class => "ui button") %>
+</div>
+</div>
 
 <% else %>
     <section id="home_sign">

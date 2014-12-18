@@ -5,9 +5,21 @@
              tournament_user = TournamentUser.where(tournament_id: t.id, user_id: current_user.id)
              if tournament_user.any?
           %>
-              <p><%= t.name %><%= link_to('Se désinscrire', {:action => 'unregister', :remote => true, :tournament_id => t.id}, {:class => 'ui negative button'}) %></p>
+              <h2 class="ui top attached header"><i class="protect icon"></i><%= t.name %></h2>
+              <div class="ui attached segment">
+                <div class="ui grid">
+                <% t.users.each do |u| %>
+                      <div class="four wide column">
+                        <i class="user icon"></i><%= u.name %>
+                      </div>
+                <% end %>
+                  </div>
+              </div>
+              <p class="ui bottom attached segment"><%= link_to('Se désinscrire', {:action => 'unregister', :remote => true, :tournament_id => t.id}, {:class => 'ui negative button'}) %></p>
           <% else %>
-              <p><%= t.name %><%= link_to('S\'inscrire', {:action => 'register', :remote => true, :tournament_id => t.id}, {:class => 'ui positive button'}) %></p>
+              <h2 class="ui top attached header"><i class="protect icon"></i><%= t.name %></h2>
+              <div class="ui attached segment">...</div>
+              <p class="ui bottom attached segment"><%= link_to('S\'inscrire', {:action => 'register', :remote => true, :tournament_id => t.id}, {:class => 'ui positive button'}) %></p>
           <% end %>
       <% end %>
   <% else %>

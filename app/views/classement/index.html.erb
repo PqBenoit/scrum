@@ -1,50 +1,27 @@
-<h2 class="ui top attached header"><i class="trophy icon"></i> Top 10</h2>
-<div class="ui attached segment">
-  <table class="ui table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Victories</th>
-      <th>Fights</th>
-      <th>Ratio</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @top10teams.each do |t| %>
-        <tr>
-          <td><%= t.name %></td>
-          <td><%= t.description %></td>
-          <td><%= t.victories %></td>
-          <td><%= t.fights %></td>
-          <td><%= t.ratio %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
 <h2 class="ui top attached header"><i class="trophy icon"></i> Classement général</h2>
 <div class="ui attached segment">
     <table class="ui table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Position</th>
+            <th>Joueur</th>
+            <th>Nom de l'équipe</th>
             <th>Victories</th>
             <th>Fights</th>
-            <th>Ratio</th>
+            <th>% victoires</th>
           </tr>
         </thead>
         <tbody>
-        <% @teams.each do |t| %>
-              <tr>
-                <td><%= t.name %></td>
-                <td><%= t.description %></td>
-                <td><%= t.victories %></td>
-                <td><%= t.fights %></td>
-                <td><%= t.ratio %></td>
-              </tr>
-          <% end %>
+        <% @bestTeams.each do |uId, t| %>
+            <tr>
+              <td><%= t['pos'] %></td>
+              <td><%= t['username'] %></td>
+              <td><%= t['name'] %></td>
+              <td><%= t['victories'] %></td>
+              <td><%= t['fights'] %></td>
+              <td><%= t['ratio'] %> %</td>
+            </tr>
+        <% end %>
         </tbody>
     </table>
 </div>
