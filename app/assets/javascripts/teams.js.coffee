@@ -5,6 +5,7 @@
 $ ->
 
 	id_equipement = ''
+	gladiator_id  = ''
 
 	$('.draggable').draggable
 		snap: '.droppable',
