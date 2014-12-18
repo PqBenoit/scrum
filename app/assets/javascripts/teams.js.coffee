@@ -5,6 +5,7 @@
 $ ->
 
 	id_equipement = ''
+	gladiator_id  = ''
 
 	$('.draggable').draggable
 		snap: '.droppable',
@@ -36,10 +37,10 @@ $ ->
 
 
 	$('.draggable-index').draggable
-		snap: '.droppable'
-
-	
-	gladiator_id = $('.draggable-index').attr('data-gladiator-id')
+		snap: '.droppable',
+		revert: true,
+		drag: (event, ui) ->
+			gladiator_id = $(this).attr('data-gladiator-id')
 
 	$('.droppable-index').droppable
 		drop: (event, ui) ->
