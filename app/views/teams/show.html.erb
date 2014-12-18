@@ -4,8 +4,8 @@
 <h2>Gladiateurs</h2>
 <% if @gladiators.count > 0 %>
 	<% @gladiators.each do |gladiator| %>
-		<div class="droppable" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
-			<p><i class="child icon"></i><%= gladiator.name %></p>
+		<div class="droppable ui message" data-id-gladiator="<%= gladiator.id %>" data-url="<%= set_equipment_path %>">
+			<p class="header"><i class="child icon"></i><%= gladiator.name %></p>
 			<% if gladiator.equipment_id %>
 				<p><%= gladiator.equipment_id %></p>
 			<% end %>
@@ -25,7 +25,7 @@
 <p>Glisser un équipement sur un gladiateur pour l'équiper</p>
 <% if @equipments.count > 0 %>
 		<% @equipments.each do |equipment| %>
-			<div class="single-equipment draggable" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
+			<div class="single-equipment draggable ui label" data-equipment-id="<%= equipment.id %>" data-equipment-points="<%= equipment.points %>">
 				<h3><%= equipment.name %></h3>
 				<input type="hidden" class="id_equipement" name="id_equipement" value="<%= equipment.id %>">
 				<!-- <p>Priorité: <%= equipment.priority %></p>
