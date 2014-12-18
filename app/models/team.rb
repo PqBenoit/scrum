@@ -8,6 +8,9 @@ class Team < ActiveRecord::Base
 		@users = User.all
 		@bestTeams = Hash.new
 		@users.each do |u|
+			if u.teams.count <= 0
+				next
+			end
 			@bestTeams[u.id] = Hash.new
 			@teams = u.teams
 			@teams.each do |t|
@@ -31,7 +34,7 @@ class Team < ActiveRecord::Base
 			end
 		end
 
-		@bestTeams = @bestTeams.sort_by{ |k, v| v[:ratio]}.reverse
+		@bestTeams = @bestTeams.sort_by{ |k, v| v['ratio']}.reverse
 		c = 0
 		@bestTeams.each do |uId, t|
 			c += 1
